@@ -376,7 +376,8 @@ argparse_usage(struct argparse *self)
             } else if (options->type == ARGPARSE_OPT_FLOAT) {
                 fprintf(stdout, "%*s%s [%f]\n", (int)pad + 2, "", options->help, *(float*)options->value);
             } else if (options->type == ARGPARSE_OPT_STRING) {
-                fprintf(stdout, "%*s%s [%s]\n", (int)pad + 2, "", options->help, (char*)options->value);
+                fprintf(stdout, "%*s%s [\"%s\"]\n", (int)pad + 2, "", options->help,
+				*(const char**)options->value == NULL ? "" : *(const char**)options->value);
             } else {
                 fprintf(stdout, "%*s%s\n", (int)pad + 2, "", options->help);
             }
