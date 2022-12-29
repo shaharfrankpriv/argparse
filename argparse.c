@@ -368,7 +368,19 @@ argparse_usage(struct argparse *self)
             fputc('\n', stdout);
             pad = usage_opts_width;
         }
-        fprintf(stdout, "%*s%s\n", (int)pad + 2, "", options->help);
+        if ((options->flags & OPT_NODEF) || !options->value) {
+            fprintf(stdout, "%*s%s\n", (int)pad + 2, "", options->help);
+        } else {
+            if (options->type == ARGPARSE_OPT_INTEGER) {
+                fprintf(stdout, "%*s%s [%d]\n", (int)pad + 2, "", options->help, *(int*)options->value);
+            } else if (options->type == ARGPARSE_OPT_FLOAT) {
+                fprintf(stdout, "%*s%s [%f]\n", (int)pad + 2, "", options->help, *(float*)options->value);
+            } else if (options->type == ARGPARSE_OPT_STRING) {
+                fprintf(stdout, "%*s%s [%s]\n", (int)pad + 2, "", options->help, (char*)options->value);
+            } else {
+                fprintf(stdout, "%*s%s\n", (int)pad + 2, "", options->help);
+            }
+        }
     }
 
     // print epilog

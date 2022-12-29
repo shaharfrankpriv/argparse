@@ -41,6 +41,7 @@ enum argparse_option_type {
 
 enum argparse_option_flags {
     OPT_NONEG = 1,              /* disable negation */
+    OPT_NODEF = 2,              /* do not display default within help */
 };
 
 /**

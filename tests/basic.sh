@@ -52,8 +52,8 @@ Basic options
     -f, --force           force to do
     -t, --test            test only
     -p, --path=<str>      path to read
-    -i, --int=<int>       selected integer
-    -s, --float=<flt>     selected float
+    -i, --int=<int>       selected integer [0]
+    -s, --float=<flt>     selected float [0.000000]
 
 Bits options
     --read                read perm
